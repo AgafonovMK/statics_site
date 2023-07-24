@@ -16,7 +16,7 @@ permissions:
 
 env:
   PRODUCT: Writerside/VK
-  DOC_ARTIFACT: webHelpX52-all.zip
+  DOC_ARTIFACT: webHelpVK2-all.zip
   # Add the variable below to upload Algolia indexes
   # ALGOLIA_ARTIFACT: algolia-indexes-XX.zip
 
