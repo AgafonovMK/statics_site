@@ -5,7 +5,7 @@
 
 Я выполнил тестовое задание в виде статического сайта.
 
-[Ссылка на тестовое задание](https://github.com/AgafonovMK/personal_rep/blob/main/Writerside/images/Test.pdf)
+[Ссылка на тестовое задание](https://github.com/AgafonovMK/statics_site/blob/main/Writerside/images/Test.pdf)
 
 [Задание 1](Review.md)
 
