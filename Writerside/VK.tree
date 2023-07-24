@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://helpserver.labs.jb.gg/help/schemas/mvp/product-profile.dtd">
+
+<instance-profile id="VK"
+                 name="Тестовое задание"
+                 start-page="Starter.md">
+
+    <toc-element topic="Starter.md"/>
+        <toc-element topic="Review.md"/>
+        <toc-element topic="Create_CDN.md"/>
+</instance-profile>

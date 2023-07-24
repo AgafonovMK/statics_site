@@ -1,0 +1,12 @@
+<buildprofiles xsi:noNamespaceSchemaLocation="https://helpserver.labs.jb.gg/help/schemas/mvp/build-profiles.xsd"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <variables>
+        <header-logo> VK-Cloud-logo.png </header-logo>
+    </variables>
+    <build-profile instance="instance_id"/>
+
+    <footer>
+        <copyright>Agafonov. MK 2023</copyright>
+    </footer>
+
+</buildprofiles>

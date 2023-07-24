@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rules SYSTEM "https://helpserver.labs.jb.gg/help/schemas/mvp/redirection-rules.dtd">
+<rules>
+    <rule id="${ID}">
+        <accepts>page.html</accepts>
+    </rule>
+    <rule id="6d065750">
+        <description>Created after removal of "Welcome to Writerside!" from X5</description>
+        <accepts>starter-topic.html</accepts>
+    </rule>
+    <rule id="14ffa426">
+        <description><![CDATA[Created after removal of "<what_is_API.md>" from X5]]></description>
+        <accepts>what_is_API.html</accepts>
+    </rule>
+    <rule id="f436b5c">
+        <description>Created after removal of "Что такое API?" from X5</description>
+        <accepts>What_is_API.html</accepts>
+    </rule>
+    <rule id="28add1f4">
+        <description><![CDATA[Created after removal of "<Start.md>" from X5]]></description>
+        <accepts>Start.html</accepts>
+    </rule>
+</rules>
