@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0cc2818a-e497-422b-82d0-b24b530ca3b5" name="Changes" comment="Edit example doxygen">
+      <change afterPath="$PROJECT_DIR$/lock_free_queue.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log_buffer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log_entry.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log_writer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AgafonovMK&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AgafonovMK/statics_site.git&quot;,
+    &quot;accountId&quot;: &quot;2533bfb7-789f-477b-9509-9dabed988b16&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2yDRMZSMjrbxFAmaLZeosXRT1VX" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;test__with__doxygen&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Lenovo/IdeaProjects/statics_site&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lenovo\IdeaProjects\statics_site" />
+    </key>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0cc2818a-e497-422b-82d0-b24b530ca3b5" name="Changes" comment="" />
+      <created>1749367110641</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1749367110641</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Edit ssg for doxygen">
+      <option name="closed" value="true" />
+      <created>1749370587426</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1749370587426</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Edit example doxygen">
+      <option name="closed" value="true" />
+      <created>1749372356051</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1749372356051</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Edit ssg for doxygen" />
+    <MESSAGE value="Edit example doxygen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edit example doxygen" />
+  </component>
+</project>
