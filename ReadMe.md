@@ -1,2 +1,2 @@
 \mainpage
-Start page
+High-Performance Logging Component Documentation

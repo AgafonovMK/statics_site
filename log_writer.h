@@ -1,65 +1,44 @@
-#pragma once
-
-#include "log_buffer.h"
-#include <fstream>
-#include <atomic>
-#include <thread>
-#include <sstream>
-
+/**
+ * @class LogWriter
+ * @brief Consumes log entries from a LogBuffer and writes them to a file in a background thread.
+ *
+ * Automatically starts on construction and shuts down cleanly on destruction.
+ */
 class LogWriter {
 public:
-    LogWriter(LogBuffer& buffer, const std::string& filename)
-        : buffer(buffer), shutdown_flag(false), out(filename, std::ios::out | std::ios::app) {
-        if (!out) {
-            throw std::runtime_error("Failed to open log file");
-        }
+    /**
+     * @brief Constructs and starts the log writer.
+     * @param buffer Reference to a LogBuffer instance.
+     * @param filename Name of the log file to write to.
+     * @throws std::runtime_error if the file cannot be opened.
+     */
+    LogWriter(LogBuffer& buffer, const std::string& filename);
 
-        worker = std::thread([this]() { this->run(); });
-    }
+    /**
+     * @brief Signals the worker thread to stop and waits for it to finish.
+     */
+    void shutdown();
 
-    void shutdown() {
-        shutdown_flag.store(true, std::memory_order_release);
-        if (worker.joinable()) {
-            worker.join();
-        }
-    }
-
-    ~LogWriter() {
-        shutdown();
-    }
+    /**
+     * @brief Destructor. Automatically calls shutdown().
+     */
+    ~LogWriter();
 
 private:
-    void run() {
-        while (!shutdown_flag.load(std::memory_order_acquire)) {
-            LogEntry* entry = buffer.consume();
-            if (entry) {
-                std::stringstream ss;
-                ss << "[" << std::chrono::duration_cast<std::chrono::milliseconds>(
-                    entry->timestamp.time_since_epoch()).count()
-                   << "] ";
+    /**
+     * @brief Background thread function to write log entries to the file.
+     */
+    void run();
 
-                ss << "[TID " << entry->thread_id << "] ";
-                ss << "[" << level_to_string(entry->level) << "] ";
-                ss << entry->message << "\n";
+    /**
+     * @brief Converts log level enum to human-readable string.
+     * @param lvl Log level.
+     * @return C-string representation of the log level.
+     */
+    const char* level_to_string(LogLevel lvl);
 
-                out << ss.str();
-            } else {
-                std::this_thread::yield();
-            }
-        }
-    }
-
-    const char* level_to_string(LogLevel lvl) {
-        switch (lvl) {
-            case LogLevel::INFO: return "INFO";
-            case LogLevel::WARNING: return "WARNING";
-            case LogLevel::ERROR: return "ERROR";
-            default: return "UNKNOWN";
-        }
-    }
-
-    LogBuffer& buffer;
-    std::atomic<bool> shutdown_flag;
-    std::ofstream out;
-    std::thread worker;
+    LogBuffer& buffer;               ///< Log buffer to consume entries from.
+    std::atomic<bool> shutdown_flag;///< Flag to signal shutdown to the worker thread.
+    std::ofstream out;              ///< Output stream for the log file.
+    std::thread worker;             ///< Worker thread that writes logs to the file.
 };

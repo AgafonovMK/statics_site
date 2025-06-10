@@ -1,48 +1,39 @@
-#pragma once
-
-#include <atomic>
-#include <cstddef>
-#include <cassert>
-
+/**
+ * @class LockFreeQueue
+ * @brief A single-producer, single-consumer lock-free circular queue.
+ *
+ * Allocates memory from an external aligned allocator. Not safe for multiple producers or consumers.
+ * Template parameter T must be a pointer type.
+ *
+ * @tparam T Type of the items to store (should be a pointer to a struct).
+ */
 template <typename T>
 class LockFreeQueue {
 public:
-    explicit LockFreeQueue(std::size_t capacity, AlignedAllocator& allocator)
-        : capacity(capacity), allocator(allocator), head(0), tail(0) {
-        buffer = reinterpret_cast<T**>(allocator.allocate(sizeof(T*) * capacity));
-        for (size_t i = 0; i < capacity; ++i) {
-            buffer[i] = nullptr;
-        }
-    }
+    /**
+     * @brief Constructs the queue with a fixed capacity.
+     * @param capacity Number of elements the queue can hold.
+     * @param allocator Reference to an AlignedAllocator used for memory.
+     */
+    explicit LockFreeQueue(std::size_t capacity, AlignedAllocator& allocator);
 
-    bool enqueue(T* item) {
-        auto current_tail = tail.load(std::memory_order_relaxed);
-        auto next_tail = (current_tail + 1) % capacity;
-        if (next_tail == head.load(std::memory_order_acquire)) {
-            return false; // queue is full
-        }
+    /**
+     * @brief Adds an item to the queue.
+     * @param item Pointer to the item to enqueue.
+     * @return True if successfully enqueued; false if the queue is full.
+     */
+    bool enqueue(T* item);
 
-        buffer[current_tail] = item;
-        tail.store(next_tail, std::memory_order_release);
-        return true;
-    }
-
-    T* dequeue() {
-        auto current_head = head.load(std::memory_order_relaxed);
-        if (current_head == tail.load(std::memory_order_acquire)) {
-            return nullptr; // queue is empty
-        }
-
-        T* item = buffer[current_head];
-        head.store((current_head + 1) % capacity, std::memory_order_release);
-        return item;
-    }
+    /**
+     * @brief Removes and returns the next item from the queue.
+     * @return Pointer to the dequeued item, or nullptr if the queue is empty.
+     */
+    T* dequeue();
 
 private:
-    std::size_t capacity;
-    AlignedAllocator& allocator;
-    T** buffer;
-
-    alignas(64) std::atomic<std::size_t> head;
-    alignas(64) std::atomic<std::size_t> tail;
+    std::size_t capacity;           ///< Max number of elements in the queue.
+    AlignedAllocator& allocator;   ///< Reference to aligned memory allocator.
+    T** buffer;                    ///< Internal array of pointers to elements.
+    alignas(64) std::atomic<std::size_t> head; ///< Index of next item to dequeue.
+    alignas(64) std::atomic<std::size_t> tail; ///< Index of next slot to enqueue.
 };

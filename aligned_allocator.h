@@ -1,47 +1,42 @@
-#pragma once
-
-#include <cstddef>
-#include <cstdint>
-#include <cstdlib>
-#include <stdexcept>
-#include <new>
-
+/**
+ * @class AlignedAllocator
+ * @brief Provides memory allocation with specified alignment.
+ *
+ * Useful for performance-sensitive applications to ensure cache-aligned memory blocks.
+ * Not thread-safe: must be externally synchronized.
+ */
 class AlignedAllocator {
 public:
-    explicit AlignedAllocator(std::size_t size, std::size_t alignment)
-        : pool_size(size), alignment(alignment) {
-        void* ptr = nullptr;
-        if (posix_memalign(&ptr, alignment, size) != 0) {
-            throw std::bad_alloc();
-        }
-        base = reinterpret_cast<std::uint8_t*>(ptr);
-        current = base;
-    }
+    /**
+     * @brief Constructs an aligned memory allocator.
+     * @param size The total size of the memory pool in bytes.
+     * @param alignment The required memory alignment (e.g., 64 for cache line alignment).
+     * @throws std::bad_alloc if memory allocation fails.
+     */
+    explicit AlignedAllocator(std::size_t size, std::size_t alignment);
 
-    void* allocate(std::size_t size) {
-        std::uintptr_t curr = reinterpret_cast<std::uintptr_t>(current);
-        std::uintptr_t aligned = (curr + alignment - 1) & ~(alignment - 1);
-        std::uint8_t* aligned_ptr = reinterpret_cast<std::uint8_t*>(aligned);
+    /**
+     * @brief Allocates a block of memory from the internal pool.
+     * @param size The size of memory to allocate in bytes.
+     * @return Pointer to aligned memory block.
+     * @throws std::bad_alloc if insufficient space remains in the pool.
+     */
+    void* allocate(std::size_t size);
 
-        if (aligned_ptr + size > base + pool_size) {
-            throw std::bad_alloc();
-        }
+    /**
+     * @brief Resets the allocator to reuse the memory pool from the beginning.
+     * All previously allocated memory is considered invalid after this call.
+     */
+    void reset();
 
-        current = aligned_ptr + size;
-        return aligned_ptr;
-    }
-
-    void reset() {
-        current = base;
-    }
-
-    ~AlignedAllocator() {
-        std::free(base);
-    }
+    /**
+     * @brief Destructor. Frees the allocated memory pool.
+     */
+    ~AlignedAllocator();
 
 private:
-    std::size_t pool_size;
-    std::size_t alignment;
-    std::uint8_t* base;
-    std::uint8_t* current;
+    std::size_t pool_size;      ///< Total size of the memory pool.
+    std::size_t alignment;      ///< Required memory alignment.
+    std::uint8_t* base;         ///< Pointer to the start of the pool.
+    std::uint8_t* current;      ///< Pointer to the current allocation position.
 };

@@ -1,37 +1,34 @@
-#pragma once
-
-#include "log_entry.h"
-#include "lock_free_queue.h"
-#include "aligned_allocator.h"
-
-#include <mutex>
-#include <stdexcept>
-
+/**
+ * @class LogBuffer
+ * @brief Combines memory allocation and queuing to store log entries.
+ *
+ * Provides a thread-safe interface for log producers. Uses a lock-free queue internally.
+ */
 class LogBuffer {
 public:
-    LogBuffer(std::size_t capacity, AlignedAllocator& allocator)
-        : allocator(allocator), queue(capacity, allocator) {}
+    /**
+     * @brief Constructs the log buffer.
+     * @param capacity Maximum number of log entries the queue can hold.
+     * @param allocator Reference to a shared memory allocator.
+     */
+    LogBuffer(std::size_t capacity, AlignedAllocator& allocator);
 
-    bool log(LogLevel level, const char* message) {
-        std::lock_guard<std::mutex> guard(mutex); // сериализуем аллокации
-        void* mem = nullptr;
+    /**
+     * @brief Logs a message into the buffer.
+     * @param level Log severity level.
+     * @param message Null-terminated log message string.
+     * @return True if the message was successfully logged, false if allocation failed.
+     */
+    bool log(LogLevel level, const char* message);
 
-        try {
-            mem = allocator.allocate(sizeof(LogEntry));
-        } catch (const std::bad_alloc&) {
-            return false;
-        }
-
-        LogEntry* entry = new (mem) LogEntry(level, message);
-        return queue.enqueue(entry);
-    }
-
-    LogEntry* consume() {
-        return queue.dequeue();
-    }
+    /**
+     * @brief Retrieves the next log entry from the buffer.
+     * @return Pointer to the log entry, or nullptr if the buffer is empty.
+     */
+    LogEntry* consume();
 
 private:
-    AlignedAllocator& allocator;
-    LockFreeQueue<LogEntry> queue;
-    std::mutex mutex; // сериализуем allocate, т.к. аллокатор не thread-safe
+    AlignedAllocator& allocator;       ///< Memory allocator for log entries.
+    LockFreeQueue<LogEntry> queue;     ///< Internal lock-free queue.
+    std::mutex mutex;                  ///< Mutex to serialize allocator access.
 };
