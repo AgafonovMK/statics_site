@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cc2818a-e497-422b-82d0-b24b530ca3b5" name="Changes" comment="Edit example doxygen">
-      <change afterPath="$PROJECT_DIR$/question.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Покупка_продуктов.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReadMe.md" beforeDir="false" afterPath="$PROJECT_DIR$/ReadMe.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aligned_allocator.h" beforeDir="false" afterPath="$PROJECT_DIR$/aligned_allocator.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lock_free_queue.h" beforeDir="false" afterPath="$PROJECT_DIR$/lock_free_queue.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log_buffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/log_buffer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log_entry.h" beforeDir="false" afterPath="$PROJECT_DIR$/log_entry.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log_writer.h" beforeDir="false" afterPath="$PROJECT_DIR$/log_writer.h" afterDir="false" />
-    </list>
+    <list default="true" id="0cc2818a-e497-422b-82d0-b24b530ca3b5" name="Changes" comment="Edit example doxygen" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -97,7 +87,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749384008271</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Edit example doxygen">
+      <option name="closed" value="true" />
+      <created>1749541929460</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1749541929460</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
